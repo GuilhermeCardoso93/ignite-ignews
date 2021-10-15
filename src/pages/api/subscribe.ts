@@ -18,6 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const session = await getSession({ req });
 
+    
     const user = await fauna.query<User>(
       q.Get(q.Match(q.Index("user_by_email"), q.Casefold(session.user.email)))
     );
@@ -43,7 +44,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       customer: customerId,
       payment_method_types: ["card"],
       billing_address_collection: "required",
-      line_items: [{ price: "price_1JJgyjD353wy5Zn6Gi2YROWp", quantity: 1 }],
+      line_items: [{ price: "price_1JfCcsJFNyEr4efTgl1xeVG4", quantity: 1 }],
       mode: "subscription",
       allow_promotion_codes: true,
       success_url: process.env.STRIPE_SUCCESS_URL,
